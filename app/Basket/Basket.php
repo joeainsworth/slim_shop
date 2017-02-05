@@ -36,7 +36,7 @@ class Basket
             throw new QuantityExceededException;
         }
         
-        if ($quantity === 0) {
+        if ($quantity == 0) {
             $this->remove($product);
             return;
         }
