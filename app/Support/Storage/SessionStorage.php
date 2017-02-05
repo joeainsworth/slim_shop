@@ -12,7 +12,7 @@ class SessionStorage implements StorageInterface, Countable
 	public function __construct($bucket = 'default')
 	{
 		if (!isset($_SESSION[$bucket])) {
-			$_SESSION[$bucket] = []
+			$_SESSION[$bucket] = [];
 		}
 
 		$this->bucket = $bucket;
@@ -34,6 +34,7 @@ class SessionStorage implements StorageInterface, Countable
 
 	public function exists($index)
 	{
+		// die(var_dump($_SESSION[$this->bucket][$index]));
 		return isset($_SESSION[$this->bucket][$index]);
 	}
 
@@ -45,7 +46,7 @@ class SessionStorage implements StorageInterface, Countable
 	public function unset($index)
 	{
 		if ($this->exists($index)) {
-			unset($_SESSION[$this->bucket][$index])
+			unset($_SESSION[$this->bucket][$index]);
 		}
 	}
 

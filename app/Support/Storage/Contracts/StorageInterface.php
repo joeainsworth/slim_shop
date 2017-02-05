@@ -1,6 +1,6 @@
 <?php
 
-namespace Shop\Support\Storage;
+namespace Shop\Support\Storage\Contracts;
 
 interface StorageInterface
 {
@@ -9,6 +9,6 @@ interface StorageInterface
 	public function all();
 	public function exists($index);
 	public function unset($index);
-	public function clear($index);
+	public function clear();
 }
 
