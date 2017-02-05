@@ -8,6 +8,7 @@ use Shop\Models\Product;
 use Shop\Basket\Basket;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Shop\Basket\Exceptions\QuantityExceededException;
 
 class CartController
 {
@@ -22,6 +23,9 @@ class CartController
 
 	public function index(Request $request, Response $response, Twig $view)
 	{
+		// TO DO: flash message if basket refresh occurs
+		$this->basket->refresh();
+
 		return $view->render($response, 'cart/index.twig');
 	}
 
@@ -34,9 +38,10 @@ class CartController
 		}
 
 		try {
+			// TO DO: flash message if more product added
 			$this->basket->add($product, $quantity);
 		} catch (QuantityExceededException $e) {
-			//
+			// TO DO: flash message if no more product is available
 		}
 
 		return $response->withRedirect($router->pathFor('cart.index'));
