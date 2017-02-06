@@ -8,9 +8,14 @@ use Shop\Models\Product;
 use Shop\Support\Storage\SessionStorage;
 use Interop\Container\ContainerInterface;
 use Shop\Support\Storage\Contracts\StorageInterface;
+use Shop\Validation\Contracts\ValidatorInterface;
+use Shop\Validation\Validator;
 
 return [
 	'router' => get(Slim\Router::class),
+	ValidatorInterface::class => function(ContainerInterface $c) {
+		return new Validator;
+	},
 	StorageInterface::class => function (ContainerInterface $c) {
 		return new SessionStorage('cart');
 	},

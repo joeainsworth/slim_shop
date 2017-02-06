@@ -23,6 +23,10 @@ class ComposerStaticInit3debfc16acf4550ee53a190c3092535e
             'Slim\\' => 5,
             'Shop\\' => 5,
         ),
+        'R' => 
+        array (
+            'Respect\\Validation\\' => 19,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -72,6 +76,10 @@ class ComposerStaticInit3debfc16acf4550ee53a190c3092535e
         'Shop\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'Respect\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/respect/validation/library',
         ),
         'Psr\\Http\\Message\\' => 
         array (

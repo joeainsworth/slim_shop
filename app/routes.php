@@ -6,3 +6,6 @@ $app->get('/products/{slug}', ['Shop\Controllers\ProductController', 'index'])->
 $app->get('/cart', ['Shop\Controllers\CartController', 'index'])->setName('cart.index');
 $app->get('/cart/add/{slug}/{quantity}', ['Shop\Controllers\CartController', 'add'])->setName('cart.add');
 $app->post('/cart/update/{slug}', ['Shop\Controllers\CartController', 'update'])->setName('cart.update');
+
+$app->get('/order', ['Shop\Controllers\OrderController', 'index'])->setName('order.index');
+$app->post('/order', ['Shop\Controllers\OrderController', 'create'])->setName('order.create');
