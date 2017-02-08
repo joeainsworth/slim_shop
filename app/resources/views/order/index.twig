@@ -10,14 +10,24 @@
  						
  						<hr>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.email %} has-error{% endif %}">
  							<label for="email">Email</label>
- 							<input type="email" name="email" id="email" class="form-control">
+ 							<input type="email" name="email" id="email" class="form-control" value="{{ old.email }}">
+ 							{% if errors.email %}
+ 							<div class="help-block">
+ 								{{ errors.email | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.name %} has-error{% endif %}">
  							<label for="name">Full name</label>
- 							<input type="text" name="name" id="name" class="form-control">
+ 							<input type="text" name="name" id="name" class="form-control" value="{{ old.name }}">
+ 							{% if errors.name %}
+ 							<div class="help-block">
+ 								{{ errors.name | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
  					</div>
  					<div class="col-md-6">
@@ -25,24 +35,44 @@
 
  						<hr>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.address1 %} has-error{% endif %}">
  							<label for="address1">Address line 1</label>
- 							<input type="text" name="address1" id="address1" class="form-control">
+ 							<input type="text" name="address1" id="address1" class="form-control" value="{{ old.address1 }}">
+ 							{% if errors.address1 %}
+ 							<div class="help-block">
+ 								{{ errors.address1 | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.address2 %} has-error{% endif %}">
  							<label for="address2">Address line 2</label>
- 							<input type="text" name="address2" id="address2" class="form-control">
+ 							<input type="text" name="address2" id="address2" class="form-control" value="{{ old.address2 }}">
+ 							{% if errors.address2 %}
+ 							<div class="help-block">
+ 								{{ errors.address2 | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.city %} has-error{% endif %}">
  							<label for="city">City</label>
- 							<input type="text" name="city" id="city" class="form-control">
+ 							<input type="text" name="city" id="city" class="form-control" value="{{ old.city }}">
+ 							{% if errors.city %}
+ 							<div class="help-block">
+ 								{{ errors.city | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
 
- 						<div class="form-group">
+ 						<div class="form-group{% if errors.postal_code %} has-error{% endif %}">
  							<label for="postal_code">Postal code</label>
- 							<input type="text" name="postal_code" id="postal_code" class="form-control">
+ 							<input type="text" name="postal_code" id="postal_code" class="form-control" value="{{ old.postal_code }}">
+ 							{% if errors.postal_code %}
+ 							<div class="help-block">
+ 								{{ errors.postal_code | first }}
+ 							</div>
+ 							{% endif %}
  						</div>
 
 

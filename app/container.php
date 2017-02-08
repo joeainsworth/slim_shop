@@ -5,6 +5,9 @@ use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Shop\Basket\Basket;
 use Shop\Models\Product;
+use Shop\Models\Customer,
+use Shop\Models\Address,
+Use Shop\Models\Order,
 use Shop\Support\Storage\SessionStorage;
 use Interop\Container\ContainerInterface;
 use Shop\Support\Storage\Contracts\StorageInterface;
@@ -35,6 +38,15 @@ return [
 	},
 	Product::class => function (ContainerInterface $c) {
 		return new Product;
+	},
+	Order::class => function (ContainerInterface $c) {
+		return new Order;
+	},
+	Address::class => function (ContainerInterface $c) {
+		return new Address;
+	},
+	Customer::class => function (ContainerInterface $c) {
+		return new Customer;
 	},
 	Basket::class => function (ContainerInterface $c) {
 		return new Basket(
