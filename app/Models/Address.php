@@ -12,9 +12,4 @@ class Address extends Model
 		'city',
 		'postal_code',
 	];
-
-	public function order()
-	{
-		return $this->hasMany(Order::class);
-	}
 }

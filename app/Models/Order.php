@@ -4,8 +4,9 @@ namespace Shop\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Shop\Models\Customer;
 use Shop\Models\Address;
+use Shop\Models\Customer;
+use Shop\Models\Product;
 
 class Order extends Model
 {
@@ -18,11 +19,11 @@ class Order extends Model
 
 	public function address()
 	{
-		return $this->belongsTo(Address:class);
+		return $this->belongsTo(Address::class);
 	}
 
 	public function products()
 	{
-		$this->belongsToMany(Products::class, 'orders_products')->withPivot('quantity');
+		return $this->belongsToMany(Product::class, 'orders_products')->withPivot('quantity');
 	}
 }

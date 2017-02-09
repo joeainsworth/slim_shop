@@ -3,10 +3,13 @@
 namespace Shop\Models;
 
 use Shop\Models\Order;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+	public $quantity = null;
+
 	public function hasLowStock()
 	{
 		if ($this->outOfStock()) {

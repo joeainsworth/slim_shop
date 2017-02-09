@@ -5,9 +5,9 @@ use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 use Shop\Basket\Basket;
 use Shop\Models\Product;
-use Shop\Models\Customer,
-use Shop\Models\Address,
-Use Shop\Models\Order,
+use Shop\Models\Customer;
+use Shop\Models\Address;
+Use Shop\Models\Order;
 use Shop\Support\Storage\SessionStorage;
 use Interop\Container\ContainerInterface;
 use Shop\Support\Storage\Contracts\StorageInterface;
