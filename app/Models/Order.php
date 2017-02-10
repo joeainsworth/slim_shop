@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Shop\Models\Address;
 use Shop\Models\Customer;
+use Shop\Models\Payment;
 use Shop\Models\Product;
 
 class Order extends Model
@@ -25,5 +26,10 @@ class Order extends Model
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'orders_products')->withPivot('quantity');
+	}
+
+	public function payment()
+	{
+		return $this->hasOne(Payment::class);
 	}
 }

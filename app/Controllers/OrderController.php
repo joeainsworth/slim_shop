@@ -98,8 +98,23 @@ class OrderController
 			]
 		]);
 
-		var_dump($result);
-		die();
+		$event = new \Shop\Events\OrderWasCreated($order, $this->basket);
+
+		if (!$result->success) {
+			$event->attach(new \Shop\Handlers\RecordFailedPayment);
+			$event->dispatch();
+
+			return $response->withRedirect($this->router->pathFor('order.index'));
+		}
+
+		$event->attach([
+			new \Shop\Handlers\MarkOrderPaid,
+			new \Shop\Handlers\RecordSuccessfulPayment($result->transaction->id),
+			new \Shop\Handlers\UpdateStock,
+			new \Shop\Handlers\EmptyBasket,
+		]);
+
+		$event->dispatch();
 	}
 
 	protected function getQuantities($items)

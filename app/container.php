@@ -48,6 +48,9 @@ return [
 	Customer::class => function (ContainerInterface $c) {
 		return new Customer;
 	},
+	Payment::class => function (ContainerInterface $c) {
+		return new Payment;
+	},
 	Basket::class => function (ContainerInterface $c) {
 		return new Basket(
 			$c->get(SessionStorage::class),
