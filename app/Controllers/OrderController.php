@@ -8,6 +8,7 @@ use Shop\Basket\Basket;
 use Shop\Models\Product;
 use Shop\Models\Address;
 use Shop\Models\Customer;
+use Shop\Models\Order;
 use Braintree\Transaction;
 use Shop\Validation\Contracts\ValidatorInterface;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -115,6 +116,23 @@ class OrderController
 		]);
 
 		$event->dispatch();
+
+		return $response->withRedirect($this->router->pathFor('order.show', [
+			'hash' => $hash,
+		]));
+	}
+
+	public function show($hash, Request $request, Response $response, Twig $view, Order $order)
+	{
+		$order = $order->with(['address', 'products'])->where('hash', $hash)->first();
+
+		if (!$order) {
+			return $response->withRedirect($this->router->pathFor('home'));
+		}
+
+		return $view->render($response, 'order/show.twig', [
+			'order' => $order,
+		]);
 	}
 
 	protected function getQuantities($items)
