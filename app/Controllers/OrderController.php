@@ -8,6 +8,7 @@ use Shop\Basket\Basket;
 use Shop\Models\Product;
 use Shop\Models\Address;
 use Shop\Models\Customer;
+use Braintree\Transaction;
 use Shop\Validation\Contracts\ValidatorInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -47,11 +48,15 @@ class OrderController
 			return $response->withRedirect($this->router->pathFor('cart.index'));
 		}
 
-			// $validation = $this->validator->validate($request, OrderForm::rules());
+		if (!$request->getParam('payment_method_nonce')) {
+			return $response->withRedirect($this->router->pathFor('order.index'));
+		}
 
-			// if ($validation->fails()) {
-			// 	return $response->withRedirect($this->router->pathFor('order.index'));
-			// }
+		$validation = $this->validator->validate($request, OrderForm::rules());
+
+		if ($validation->fails()) {
+			return $response->withRedirect($this->router->pathFor('order.index'));
+		}
 
 		$hash = bin2hex(random_bytes(32));
 
@@ -84,6 +89,17 @@ class OrderController
 			$this->basket->all(),
 			$this->getQuantities($this->basket->all())
 		);
+
+		$result = Transaction::sale([
+			'amount' => $this->basket->subTotal() + 5,
+			'paymentMethodNonce' => $request->getParam('payment_method_nonce'),
+			'options' => [
+				'submitForSettlement' => true,
+			]
+		]);
+
+		var_dump($result);
+		die();
 	}
 
 	protected function getQuantities($items)
